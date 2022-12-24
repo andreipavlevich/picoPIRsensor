@@ -44,11 +44,11 @@ while True:
     while machine.Pin(29, machine.Pin.IN).value(): #когда получаем сигнал с датчика движения запускаем процедуру отправки POST на сервер
         machine.Pin(25,machine.Pin.OUT).toggle() #вкл/выкл диод - индикатор, что условие сработало
         #send data
-        Send_AT_Cmd('AT+CIPSTART="TCP","192.168.88.18",3030\r\n', 0.1) #подключаемся к серверу
+        Send_AT_Cmd('AT+CIPSTART="TCP","192.168.88.22",3030\r\n', 0.1) #подключаемся к серверу
         body="PICO" #тело запроса, определив которй будет произведена отработка сценария реакции на датчик движения
         body_len=str(len(body)) #длина тела ответа       
         h1="POST / HTTP/1.1\r\n" #запрос POST и его хедер
-        h2="Host: 192.168.88.18:3030\r\n"
+        h2="Host: 192.168.88.22:3030\r\n"
         h3="Content-Type: text/plain\r\n"
         h4="Content-Length: "+body_len+"\r\n" #здесь следует указать длину тела ответа
         h5="Connection: keep-alive\r\n\r\n"
